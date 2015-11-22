@@ -11,6 +11,7 @@
     <h1>Hello <%= current_user.email %></h1>
     <%= link_to "Log out", destroy_user_session_path, method: :delete %>
 
+<<<<<<< HEAD
     <hr>
   <% else %>
     <%= link_to "login", new_user_session_path %>
@@ -20,6 +21,22 @@
 <% flash.each do |type, message| %>
     <strong><%= message %></strong>
 <% end %>    
+=======
+<% if user_signed_in? %>
+<h3>Hello, <%= current_user.email %></h3>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<% else %>
+<%= link_to "サインイン", new_user_session_path %>
+<%= link_to "ユーザー登録", new_user_registration_path %>
+<% end %>
+
+<hr>
+<% flash.each do |type, message| %>
+  <strong><%= message %></strong>
+<% end %>
+<br>
+
+>>>>>>> 7acbd7c6229fbba12f4a9252a387d110cc8a9f01
 <%= yield %>
 
 </body>

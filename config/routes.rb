@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :user_logs
-  resources :user_logs
+
   root 'static_pages#home'
 
   devise_for :users
