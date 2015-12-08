@@ -5,39 +5,44 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= render 'layouts/head' %>
 </head>
 <body>
-  <% if user_signed_in? %>
-    <h1>Hello <%= current_user.email %></h1>
-    <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+  
 
-<<<<<<< HEAD
-    <hr>
-  <% else %>
-    <%= link_to "login", new_user_session_path %>
-    <%= link_to "sign up", new_user_registration_path %>
-  <% end %>
-<hr>
-<% flash.each do |type, message| %>
-    <strong><%= message %></strong>
-<% end %>    
-=======
-<% if user_signed_in? %>
-<h3>Hello, <%= current_user.email %></h3>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<% else %>
-<%= link_to "サインイン", new_user_session_path %>
-<%= link_to "ユーザー登録", new_user_registration_path %>
-<% end %>
+<!--<div class="loader"><div class="loader_html"></div></div>-->
+        <div id="wrap" class="grid_1200">
+            <!--layouts/login_panel-->
+            <%= render 'layouts/lost_password' %>
+            <!--header-top-->
+            <%= render 'layouts/header' %>
+            <div class="section-warp ask-me">
+		        <div class="container clearfix">
+		        </div>
+		    </div>
+            <section class="container main-content">
+		    <div class="row">
+		        <div class="col-md-9">
+		          <% if user_signed_in? %>
+                    <h3>Hello, <%= current_user.email %></h3>
+                    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+                    <% else %>
+                    <%= link_to "サインイン", new_user_session_path %>
+                    <%= link_to "ユーザー登録", new_user_registration_path %>
+                  <% end %>
 
-<hr>
-<% flash.each do |type, message| %>
-  <strong><%= message %></strong>
-<% end %>
-<br>
-
->>>>>>> 7acbd7c6229fbba12f4a9252a387d110cc8a9f01
-<%= yield %>
-
+                    <hr>
+                    <% flash.each do |type, message| %>
+                      <strong><%= message %></strong>
+                    <% end %>
+                    <br>
+		          <%= yield %>
+		        </div>
+		        <%= render 'layouts/aside' %>
+		    </div>
+	        </section>
+        </div>
+    </div>
+<%= render 'layouts/javascript_include' %>
 </body>
 </html>

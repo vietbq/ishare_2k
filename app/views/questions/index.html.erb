@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Questions</h1>
+
+
+
+
+
+	
+	<section class="container main-content">
+		<div class="row">
+
+			<div class="col-md-9">
+			  		  <%= link_to 'New Question', new_question_path, class: "button color small submit", id: "publish-question" %>
+
+			  <% @questions.each do |question| %>
+				<article class="question question-type-normal">
+					<h2>
+						<a><%= question.title %></a>
+					</h2>
+					<a class="question-report" href="#">Report</a>
+					<div class="question-type-main"><i class="icon-question-sign"></i>Question</div>
+					<div class="question-author">
+						<a href="#" original-title="ahmed" class="question-author-img tooltip-n"><span></span><img alt="" src="http://2code.info/demo/html/ask-me/images/demo/avatar.png"></a>
+					</div>
+					<div class="question-inner">
+						<div class="clearfix"></div>
+						<p class="question-desc">
+              <%= question.content %>
+						  </p>
+						<div class="question-details">
+							<span class="question-answered question-answered-done"><i class="icon-ok"></i>
+							  <%= link_to 'Show', question %>
+							</span>
+							<span class="question-favorite"><i class="icon-star"></i>5</span>
+						</div>
+						<span class="question-date"><i class="icon-time"></i><%= question.updated_at %></span>
+						<span class="question-comment"><a href="#"><i class="icon-edit"></i>
+						  <%= link_to 'Edit', edit_question_path(question) %>
+						  </a></span>
+						<span class="question-view"><i class="icon-remove"></i>
+						  <%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %>
+						</span>
+						<div class="clearfix"></div>
+					</div>
+				</article>
+				<% end %>
+				
+			</div><!-- End main -->
+		</div><!-- End row -->
+	</section><!-- End container -->

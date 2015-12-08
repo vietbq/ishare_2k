@@ -1,29 +1,36 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing User Logs</h1>
+<h1>News</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Log data</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @user_logs.each do |user_log| %>
-      <tr>
-        <td><%= user_log.user.email %></td>
-        <td><%= user_log.log_data %></td>
-        <td><%= link_to 'Show', user_log %></td>
-        <td><%= link_to 'Edit', edit_user_log_path(user_log) %></td>
-        <td><%= link_to 'Destroy', user_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= link_to 'Create news', new_user_log_path, class: "button color small submit", id: "publish-question" %>
 
-<br>
-
-<%= link_to 'New User log', new_user_log_path %>
+			  <% @user_logs.each do |user_log| %>
+				<article class="question question-type-normal">
+					<h2>
+						<a><%= user_log.user.email %></a>
+					</h2>
+					<div class="question-author">
+						<a href="#" original-title="ahmed" class="question-author-img tooltip-n"><span></span><img alt="" src="http://2code.info/demo/html/ask-me/images/demo/avatar.png"></a>
+					</div>
+					<div class="question-inner">
+						<div class="clearfix"></div>
+						<p class="question-desc">
+              <%= user_log.log_data %>
+						  </p>
+						<div class="question-details">
+							<span class="question-answered question-answered-done"><i class="icon-ok"></i>
+							  <%= link_to 'Show', user_log %>
+							</span>
+						</div>
+						<span class="question-date"><i class="icon-time"></i><%= user_log.updated_at %></span>
+						<span class="question-comment"><a href="#"><i class="icon-edit"></i>
+						  <%= link_to 'Edit', edit_user_log_path(user_log) %>
+						  </a></span>
+						<span class="question-view"><i class="icon-remove"></i>
+						  <%= link_to 'Destroy', user_log, method: :delete, data: { confirm: 'Are you sure?' } %>
+						</span>
+						<div class="clearfix"></div>
+					</div>
+				</article>
+				<% end %>

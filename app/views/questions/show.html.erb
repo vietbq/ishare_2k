@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+	<section class="container main-content">
+		<div class="row">
+			<div class="col-md-9">
+				<article class="question single-question question-type-normal">
+					<h2>
+						<!--<a href="single_question.html">This Is My first Question</a>\-->
+						<%= @question.title %>
+					</h2>
+					<a class="question-report" href="#">Report</a>
+					<div class="question-type-main"><i class="icon-question-sign"></i>Question</div>
+					<div class="question-inner">
+						<div class="clearfix"></div>
+						<div class="question-desc">
+						  <p>
+						    <%= @question.content %>
+						  </p>
+						</div>
+						<div class="question-details">
+							<span class="question-answered question-answered-done">
+							  <%= link_to 'Edit', edit_question_path(@question) %>
+							</span>
+							<span class="question-favorite"><i class="icon-star"></i>5</span>
+						</div>
+						<span class="question-date"><i class="icon-time"></i>
+						<%= @question.updated_at %>
+						</span>
+						<!--<span class="question-comment"><a href="#"><i class="icon-comment"></i>5 Answer</a></span>-->
+						<ul class="single-question-vote">
+							<li><a href="#" class="single-question-vote-down" title="Dislike"><i class="icon-thumbs-down"></i></a></li>
+							<li><a href="#" class="single-question-vote-up" title="Like"><i class="icon-thumbs-up"></i></a></li>
+						  <li><%= link_to 'Back', questions_path %></li>
+						</ul>
+						<div class="clearfix"></div>
+					</div>
+				</article>
+				
+				
+				
+				<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+				
+
+<div class="fb-comments" data-href="https://ishare-2k-anhtuyen1512-4.c9.io/questions/<%= @question.id %>" data-width="850" data-numposts="5"></div>
+				
+				
+			</div><!-- End main -->
+		</div><!-- End row -->
+	</section><!-- End container -->
