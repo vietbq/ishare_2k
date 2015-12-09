@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207062301) do
+ActiveRecord::Schema.define(version: 20151209064633) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "content"
@@ -33,16 +33,6 @@ ActiveRecord::Schema.define(version: 20151207062301) do
 
   add_index "friends", ["friend_id"], name: "index_friends_on_friend_id"
 
-  create_table "goal_manages", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "word_number"
-    t.integer  "learned_word"
-    t.datetime "start_at"
-    t.datetime "deadline"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
   create_table "questions", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
@@ -52,6 +42,17 @@ ActiveRecord::Schema.define(version: 20151207062301) do
   end
 
   add_index "questions", ["user_id"], name: "index_questions_on_user_id"
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id"
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id"
 
   create_table "user_logs", force: :cascade do |t|
     t.integer  "user_id"

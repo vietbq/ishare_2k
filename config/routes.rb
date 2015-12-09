@@ -20,11 +20,17 @@ Rails.application.routes.draw do
   get '/user_points' => 'ask_questions#user_points'
   get '/user_profile' => 'ask_questions#user_profile'
   get '/user_questions' => 'ask_questions#user_questions'
+  get '/users/lists' => 'users#lists'
 
   devise_for :users
   resources :users, only: :show
   resources :friends, only: [:create, :destroy, :update]
-  
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships,       only: [:create, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
