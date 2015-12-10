@@ -5,8 +5,12 @@
 				<h2>Lists User</h2>
 				<div class="ul_list ul_list-icon-ok">
 					<ul>
-					<% @users.each do |user| %>
-						<li><i class="icon-user"></i><a href="#"><span><%= user.name %></span></a><a class="" href="#" style="float: right">Folow</a></li>
+					<% @users.each do |user_c| %>
+					<% @userc = user_c %>
+						<li><i class="icon-user"></i><a href="#"><span><%= user_c.name %></span></a><div style="float: right"><%= render 'follow_form' if user_signed_in? %></div></li>
+						
+						
+						
 					<% end %>
 					</ul>
 					
